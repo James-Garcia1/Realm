@@ -1,27 +1,34 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/BridgeArea2D.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/NPCArea2D.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=5]
+[ext_resource path="res://font/JosefinSans-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://font/JosefinSans-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sprites/land.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/land2.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Bridge/bridge1.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/BridgeState.gd" type="Script" id=7]
-[ext_resource path="res://addons/GodotTIE/text_interface_engine.gd" type="Script" id=8]
-[ext_resource path="res://font/JosefinSans-Regular.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://font/JosefinSans-Bold.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/BridgeState.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/NPCArea2D.gd" type="Script" id=9]
+[ext_resource path="res://addons/GodotTIE/text_interface_engine.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/BridgeArea2D.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/World0.gd" type="Script" id=13]
+
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( -3.23047, -210.407 )
+b = Vector2( 0.499512, 203.63 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 64, 64 )
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=12]
 radius = 32.1084
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 32
-font_data = ExtResource( 9 )
+font_data = ExtResource( 3 )
 
-[sub_resource type="Theme" id=4]
+[sub_resource type="Theme" id=5]
 Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
@@ -34,23 +41,59 @@ Button/styles/hover = null
 Button/styles/normal = null
 Button/styles/pressed = null
 
-[sub_resource type="StyleBoxEmpty" id=5]
-
 [sub_resource type="StyleBoxEmpty" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="DynamicFont" id=9]
 size = 24
-font_data = ExtResource( 9 )
+font_data = ExtResource( 3 )
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=10]
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=11]
 size = 40
-font_data = ExtResource( 10 )
+font_data = ExtResource( 2 )
 
-[node name="World" type="Node"]
+[node name="World0" type="Node"]
+script = ExtResource( 13 )
+
+[node name="Land" type="StaticBody2D" parent="."]
+position = Vector2( -26.4162, -85.1757 )
+rotation = 0.279253
+
+[node name="Sprite" type="Sprite" parent="Land"]
+position = Vector2( 1202.02, 587.033 )
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Land"]
+position = Vector2( -1.52059, 4.58062 )
+polygon = PoolVector2Array( 2305.09, -38.9123, 2256.77, -162.449, 1769.52, -262.106, 1538.61, -430.839, 777.433, -226.937, 434.31, 52.5465, 18.1007, 250.546, -75.0284, 455.665, -56.8727, 821.11, -140.194, 1147.5, 2.89352, 1422.1, 546.854, 1684.94, 1095.46, 1793.75, 1641.44, 1511.87, 1887.71, 1464.88, 2314.45, 1100.5, 2490.65, 806.733, 2482.71, 458.985, 2369.16, 165.815, 2408.75, 137.891, 2529.95, 467.514, 2528.78, 831.909, 2348.82, 1126.22, 1909.77, 1511.54, 1630.77, 1570.92, 1113.76, 1840.95, 537.783, 1728.42, -30.2159, 1474.99, -192.976, 1139.8, -110.778, 810.017, -122.257, 447.945, -20.7133, 217.112, 413.762, 19.6957, 740.264, -256.272, 1550.33, -477.289, 1789.44, -300.632, 2268.8, -186.574, 2324.65, -57.3663 )
+
+[node name="LandBridge1" type="StaticBody2D" parent="."]
+position = Vector2( -285.984, 447.241 )
+rotation = -0.174533
+scale = Vector2( 1.1, 1.1 )
+
+[node name="Sprite" type="Sprite" parent="LandBridge1"]
+position = Vector2( 3020.64, 60.7164 )
+rotation = -1.49012e-08
+texture = ExtResource( 5 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LandBridge1"]
+polygon = PoolVector2Array( 2498.79, 542.323, 2516.36, 684.535, 2752.7, 667.206, 2824.07, 474.569, 2772.4, 282.68, 2598.91, 217.886, 2420.99, 275.229, 2467.11, 431.934, 2481.32, 430.164, 2443.92, 284.616, 2599.4, 239.35, 2759.29, 296.402, 2805.6, 470.242, 2738.42, 639.036, 2529.34, 660.956, 2506.21, 525.407, 2492.67, 529.433 )
+
+[node name="LoadNextSceneArea" type="Area2D" parent="LandBridge1"]
+position = Vector2( 657.359, 49.4225 )
+collision_layer = 524288
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LandBridge1/LoadNextSceneArea"]
+position = Vector2( 1935.05, 407.356 )
+rotation = -0.240855
+shape = SubResource( 1 )
 
 [node name="NPC-Test" type="Node2D" parent="."]
 position = Vector2( 1884.76, 174.958 )
@@ -59,7 +102,7 @@ position = Vector2( 1884.76, 174.958 )
 texture = ExtResource( 1 )
 
 [node name="NPCArea2D" type="Area2D" parent="NPC-Test"]
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC-Test/NPCArea2D"]
 shape = SubResource( 2 )
@@ -77,8 +120,8 @@ __meta__ = {
 }
 
 [node name="Bridge" type="Node2D" parent="."]
-position = Vector2( 2519.48, 317.979 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 2342.84, 608.772 )
+scale = Vector2( 0.25, 0.25 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Bridge"]
 
@@ -90,13 +133,13 @@ polygon = PoolVector2Array( -652.699, -149.921, -634.542, -187.631, -608.786, -1
 
 [node name="BridgeState" type="CollisionPolygon2D" parent="Bridge/StaticBody2D"]
 polygon = PoolVector2Array( -567.467, -224.432, -536.516, 291.965, -433.888, 257.755, -481.129, -250.496 )
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Bridge"]
 texture = ExtResource( 6 )
 
 [node name="BridgeArea2D" type="Area2D" parent="Bridge"]
-script = ExtResource( 2 )
+script = ExtResource( 11 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bridge/BridgeArea2D"]
 polygon = PoolVector2Array( -620.805, -162.351, -821.758, -74.1776, -770.495, 206.747, -590.047, 251.859, 683.342, -293.586, 540.509, -624.775 )
@@ -112,17 +155,20 @@ __meta__ = {
 }
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 1971.39, 394.326 )
-script = ExtResource( 5 )
+position = Vector2( 2074.9, 640.111 )
+collision_mask = 524289
+script = ExtResource( 12 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 texture = ExtResource( 1 )
 
 [node name="Collider" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 1 )
+shape = SubResource( 12 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+
+[node name="World1" type="Node" parent="Player"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -131,7 +177,7 @@ pause_mode = 2
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
-script = ExtResource( 3 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -146,11 +192,11 @@ margin_top = 350.0
 margin_right = 1800.0
 margin_bottom = 650.0
 size_flags_vertical = 3
-script = ExtResource( 8 )
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-FONT = SubResource( 3 )
+FONT = SubResource( 4 )
 
 [node name="choice1" type="Button" parent="CanvasLayer/Dialogue"]
 visible = false
@@ -162,11 +208,11 @@ rect_pivot_offset = Vector2( -67, -1 )
 focus_mode = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 4 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 8 )
+theme = SubResource( 5 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color_hover = Color( 0.705882, 0.705882, 0.705882, 1 )
 action_mode = 0
 enabled_focus_mode = 0
@@ -186,11 +232,11 @@ rect_pivot_offset = Vector2( -67, -1 )
 focus_mode = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 4 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 8 )
+theme = SubResource( 5 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color_hover = Color( 0.705882, 0.705882, 0.705882, 1 )
 action_mode = 0
 enabled_focus_mode = 0
@@ -210,11 +256,11 @@ rect_pivot_offset = Vector2( -67, -1 )
 focus_mode = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 4 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 9 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 8 )
+theme = SubResource( 5 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color_hover = Color( 0.480469, 0.480469, 0.480469, 1 )
 custom_colors/font_color_pressed = Color( 0.482353, 0.482353, 0.482353, 1 )
 action_mode = 0
@@ -235,11 +281,11 @@ rect_pivot_offset = Vector2( -67, -1 )
 focus_mode = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 4 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 8 )
+theme = SubResource( 5 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color_hover = Color( 0.705882, 0.705882, 0.705882, 1 )
 action_mode = 0
 enabled_focus_mode = 0
@@ -255,7 +301,7 @@ margin_top = 295.0
 margin_right = 1800.0
 margin_bottom = 350.0
 size_flags_vertical = 2
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Alice"
 align = 1
@@ -265,13 +311,7 @@ __meta__ = {
 
 [node name="npc_sprite" type="Sprite" parent="CanvasLayer/Dialogue"]
 position = Vector2( 400, 500 )
-
-[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( 2232.49, 208.468, 2055.61, -2.39771, 1418.43, 3.47498, 1148.29, 147.355, 1066.07, 361.707, 1071.95, 784.538, 1268.68, 919.609, 1685.64, 943.099, 2082.04, 869.691, 2258.22, 637.721, 2269.97, 438.051, 2220.05, 452.733, 2035.06, 766.92, 1582.87, 810.965, 1324.47, 766.92, 1212.89, 628.912, 1254, 238.381, 1597.55, 85.6921, 1879.44, 59.2651, 2090.85, 138.546, 2202.43, 235.445 )
+[connection signal="body_entered" from="LandBridge1/LoadNextSceneArea" to="." method="_on_LoadNextSceneArea_body_entered"]
 [connection signal="buff_end" from="CanvasLayer/Dialogue/Tie" to="CanvasLayer/Dialogue" method="_on_Tie_buff_end"]
 [connection signal="pressed" from="CanvasLayer/Dialogue/choice1" to="CanvasLayer/Dialogue" method="_on_choice1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Dialogue/choice2" to="CanvasLayer/Dialogue" method="_on_choice2_pressed"]

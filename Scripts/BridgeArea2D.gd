@@ -3,6 +3,7 @@ extends Area2D
 var ID = "01"
 var font
 var nearBy = false
+var startLength = Global.bridgeLength01
 var length = Global.bridgeLength01
 var maxLength = Global.bridgeMaxLength01
 signal interact
@@ -15,11 +16,12 @@ export(int) var woodRequired = 10
 func _ready():
 	connect("body_entered",self,"_dialogue_prompt")
 	connect("body_exited",self,"_dialogue_end_prompt")
-
-	for i in range(maxLength):
+	
+	for i in range(maxLength - startLength + 1):
 		bridgeStates.push_back(load("res://Sprites/Bridge/bridge" + str(length+i) + imgType))
 	
 	set_bridge_sprite()
+
 
 #checks to make sure player has enough resources
 func resource_check():
@@ -41,7 +43,7 @@ func spend_resource():
 	Global.playerWood -= woodRequired
 	
 func set_bridge_sprite():
-	$"../Sprite".set_texture(bridgeStates[length-1])
+	$"../Sprite".set_texture(bridgeStates[length-startLength])
 
 	
 func can_increase_length():
