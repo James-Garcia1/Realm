@@ -1,6 +1,6 @@
 extends Area2D
 
-var ID = "01"
+var ID = "02"
 var font
 var canInteract = false
 signal interact

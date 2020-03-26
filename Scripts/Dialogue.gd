@@ -8,7 +8,7 @@ var data
 var startState #cause dialogue to play when first started
 var choiceButtonPressed = -1
 
-var imageType = ".jpg"
+var imageType = ".png"
 export(int) var WidthPerLine = 32
 export(int) var choiceIndent = 20
 export(int) var choiceStartLeadY = -50
@@ -45,7 +45,10 @@ func set_npc_name():
 
 #sets texture depending on ID and emotion form data file
 func set_npc_texture():
-	$npc_sprite.set_texture(load("res://Sprites/" + ID + "/" + data[int(dialogueID)].Emotion + imageType))
+	if (File.new().file_exists("res://Sprites/" + ID + "/" + data[int(dialogueID)].Emotion + imageType)):
+		$npc_sprite.set_texture(load("res://Sprites/" + ID + "/" + data[int(dialogueID)].Emotion + imageType))
+	else:
+		$npc_sprite.set_texture(load("res://Sprites/" + ID + "/" + "Default" + imageType))
 
 #sets backgroud depending on ID
 func set_background():
