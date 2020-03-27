@@ -61,6 +61,8 @@ font_data = ExtResource( 2 )
 [node name="Region0" type="Node"]
 script = ExtResource( 15 )
 
+[node name="TreeContainer" type="Node" parent="."]
+
 [node name="Land" type="StaticBody2D" parent="."]
 position = Vector2( 971.902, 790.03 )
 rotation = 0.279253

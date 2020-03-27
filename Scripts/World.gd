@@ -3,13 +3,12 @@ extends Node
 func _ready():
 	
 	#sets tree spawn to false for all zones on game start
-	print(1)
 	var i = 0
 	while (File.new().file_exists("res://Scenes/Region"+str(i)+".tscn")):
-		# [wether trees spawn in region, #trees, sizes, coordinates, amount factor, size factor]
-		Global.treeSpawn[i] = [false, 0, [], [], 10, 2]
+		# [wether trees spawn in region, #trees, sizes, coordinates, amount factor, size factor, tree energy]
+		Global.treeSpawn[i] = [false, 0, [], [], 10, 2, []]
 		i += 1
-	
+
 func load_trees():
 	var regionID = Global.currentRegionID
 	var treeSpawnData = Global.treeSpawn[regionID]
@@ -21,6 +20,7 @@ func load_trees():
 			regionNode.add_child(currentTreeNode)
 			currentTreeNode.set_scale(Vector2(treeSpawnData[2][i],treeSpawnData[2][i]))
 			currentTreeNode.set_position(treeSpawnData[3][i])
+			Global.currentTreeIndex = i
 
 func load_scene(playerPositon, nextRegionID):
 	Global.playerPositionLoad = playerPositon

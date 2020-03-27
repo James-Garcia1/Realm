@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/TreeArea2D.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 205.666
+radius = 114.392
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 64.2848
@@ -21,6 +21,18 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreeArea2D"]
 shape = SubResource( 1 )
+
+[node name="InteractDialogue" type="Label" parent="TreeArea2D"]
+visible = false
+margin_left = -175.27
+margin_top = -21.4331
+margin_right = -58.27
+margin_bottom = -7.43311
+rect_scale = Vector2( 3, 3 )
+text = "Press E to Interact"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TreeBody2D" type="StaticBody2D" parent="."]
 

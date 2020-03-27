@@ -25,7 +25,7 @@ func _ready():
 
 #checks to make sure player has enough resources
 func resource_check():
-	if (Global.playerWood > woodRequired):
+	if (Global.playerWood >= woodRequired):
 		return true
 	return false
 

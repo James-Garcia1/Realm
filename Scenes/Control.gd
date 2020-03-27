@@ -25,6 +25,13 @@ func coordinates_trees(numTrees, region):
 		regionSpawnCoordinates.pop_back()
 	return treeCoordinates
 
+func energy_trees(numTrees, treeSizes):
+	var treeEnergies = []
+	for i in range(numTrees):
+		treeEnergies.push_back(int(Global.energyFactor * treeSizes[i]))
+	return treeEnergies
+
+
 func spawn_trees():
 	rng.randomize()
 	for region in Global.treeSpawn.keys():
@@ -33,6 +40,20 @@ func spawn_trees():
 			regionTreeData[1] = random_num_trees(regionTreeData[4])
 			regionTreeData[2] = random_size_trees(regionTreeData[1], regionTreeData[5])
 			regionTreeData[3] = coordinates_trees(regionTreeData[1], region)
+			regionTreeData[6] = energy_trees(regionTreeData[1], regionTreeData[2])
+
+func remove_tree_data(treeIndex):
+	var regionTreeData = Global.treeSpawn[Global.currentRegionID]
+	var regionSpawnCoordinates = Global.get("treeSpawnCoordinates" + str(Global.currentRegionID))
+	regionTreeData[1] -= 1
+	regionTreeData[2].remove(treeIndex)
+	regionSpawnCoordinates.push_back(regionTreeData[3][treeIndex])
+	regionTreeData[3].remove(treeIndex)
+	regionTreeData[6].remove(treeIndex)
+	
+func _remove_tree(treeIndex, treeNodeArea2D):
+	remove_tree_data(treeIndex)
+	treeNodeArea2D.get_parent().queue_free()
 
 func _process(delta):
 	if Global.dialogueState02 == "004" && canSpawn:
@@ -40,3 +61,4 @@ func _process(delta):
 		Global.treeSpawn[0][0] = true
 		spawn_trees()
 		emit_signal("LoadTrees")
+	
